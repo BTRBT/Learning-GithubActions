@@ -1,0 +1,24 @@
+name: Tests
+run-name: Run all tests.
+on: 
+    push:
+        branches:
+            - main
+        paths-ignore:
+            - 'README.md'
+jobs:
+    tests:
+        name: Pytest checks
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
+
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v2
+
+            - name: Build Docker image
+              run: docker build -t test-image .
+
+            - name: Run tests in Docker container
+              run: docker run --rm test-image pytest
