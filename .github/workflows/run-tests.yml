@@ -1,5 +1,5 @@
 name: Tests
-run-name: Run all tests.
+run-name: Run Tests
 on: 
     push:
         branches:
@@ -8,7 +8,7 @@ on:
             - 'README.md'
 jobs:
     tests:
-        name: Pytest checks
+        name: Pytest Checks
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
