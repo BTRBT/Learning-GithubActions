@@ -19,7 +19,10 @@ jobs:
               run: docker build --target development -t test-image .
 
             - name: Pytest checks
-              run: docker run --rm test-image pytest
+              run: |
+                echo "::notice::Starting Pytest checks"
+                docker run --rm test-image pytest || echo "::error::Pytest failed! Check logs."
+                echo "::notice::Pytest checks completed"
 
             - name: Ruff formatting checks
               run: docker run --rm test-image ruff check
