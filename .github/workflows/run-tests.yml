@@ -6,17 +6,23 @@ on:
         paths-ignore: 'README.md'
 jobs:
     tests:
-        name: Pytest Checks
+        name: Tests
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
               uses: actions/checkout@v3
 
-            - name: Set up Docker Buildx
+            - name: Setup Docker buildx
               uses: docker/setup-buildx-action@v2
 
             - name: Build Docker image
-              run: docker build -t test-image .
+              run: docker build --target development -t test-image .
 
-            - name: Run tests in Docker container
+            - name: Pytest checks
               run: docker run --rm test-image pytest
+
+            - name: Ruff formatting checks
+              run: docker run --rm test-image ruff check
+
+            - name: Bandit security checks
+              run: docker run --rm test-image bandit -r src

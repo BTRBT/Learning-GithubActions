@@ -9,6 +9,8 @@ gunicorn = "*"
 
 [dev-packages]
 pytest = "*"
+ruff = "*"
+bandit = "*"
 
 [requires]
 python_version = "3.11"

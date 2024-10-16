@@ -12,6 +12,8 @@ This is a study project to learn Github Actions for automated testing and deploy
 
 [ChatGPT Discussion - Dockerfile Multi-Stage Build](https://chatgpt.com/share/670eaa29-1b94-8008-a8f9-1c9c1fc9090e) - This offered some interesting insights in using Docker alone for CI/CD. I actually quite like this option.
 
+[Docker Best Practices for Python Developers](https://testdriven.io/blog/docker-best-practices/) - Talks about some best practices for building Docker images with Python. Potentially relevant to the CI/CD methodology I've incorporated here.
+
 
 ## Resources
 [Act](https://github.com/nektos/act) - This is used to run github actions locally. Useful for ensuring that actions work properly before using up github cloud resources.

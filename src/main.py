@@ -3,6 +3,11 @@ from datetime import datetime
 from flask import Flask, render_template
 
 
+def one():
+    # Returns one. What do you want?
+    # Used in testing
+    return 1
+
 # Rudimentary flask application.
 app = Flask(__name__)
 
