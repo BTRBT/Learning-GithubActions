@@ -1,10 +1,11 @@
 # Baseline image
 FROM python:3-alpine as base
 
-# Install dependencies
+# Update packages and install dependencies
 COPY Pipfile Pipfile.lock ./
-RUN pip install --no-cache-dir pipenv && \
-    pipenv install --system
+RUN apk upgrade --no-cache && \
+    pip install --no-cache-dir pipenv && \
+    pipenv install --clear --system
 
 # Copy application code into working directory
 WORKDIR /usr/app
@@ -15,7 +16,7 @@ COPY src ./src
 FROM base as development
 
 # Install development dependencies
-RUN pipenv install --system --dev
+RUN pipenv install --clear --system --dev
 
 COPY tests ./tests
 
