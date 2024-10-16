@@ -20,12 +20,15 @@ jobs:
 
             - name: Pytest checks
               run: |
-                echo "::notice::Starting Pytest checks"
                 docker run --rm test-image pytest || echo "::error::Pytest failed! Check logs."
-                echo "::notice::Pytest checks completed"
+                echo "::notice::Pytest passed"
 
             - name: Ruff formatting checks
-              run: docker run --rm test-image ruff check
+              run: |
+                docker run --rm test-image ruff check || echo "::error::Ruff failed! Check logs."
+                echo "::notice::Ruff passed"
 
             - name: Bandit security checks
-              run: docker run --rm test-image bandit -r src
+              run: |
+                docker run --rm test-image bandit -r src || echo "::error::Bandit failed! Check logs."
+                echo "::notice::Bandit passed"
